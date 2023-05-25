@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
+  version: 1.0.0
   title: eCommerce API
   description: This is a simple eCommerce API.
-  version: 1.0.0
 servers:
   - url: 'http://api.example.com/v1'
 paths:
@@ -17,13 +17,15 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+                  $ref: '#/components/schemas/Product'
         '401':
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/x8O50c9KQnA'
+                $ref: '#/components/schemas/Error'
+      servers:
+        - url: 'http://api.example.com/v1'
     post:
       summary: Create a new product
       requestBody:
@@ -31,14 +33,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
           description: Created product
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+                $ref: '#/components/schemas/Product'
+      servers:
+        - url: 'http://api.example.com/v1'
   '/products/{productId}':
     get:
       summary: Get a product by ID
@@ -54,7 +58,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+                $ref: '#/components/schemas/Product'
+      servers:
+        - url: 'http://api.example.com/v1'
   /orders:
     get:
       summary: List all orders
@@ -67,6 +73,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Order'
+      servers:
+        - url: 'http://api.example.com/v1'
     post:
       summary: Create a new order
       requestBody:
@@ -82,8 +90,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+      servers:
+        - url: 'http://api.example.com/v1'
 components:
   schemas:
+    Product:
+      type: object
+      title: Product
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - name
+        - price
+        - currency
+    User:
+      type: object
+      title: User
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        role:
+          type: string
+      required:
+        - name
+        - email
+        - role
+    Address:
+      type: object
+      title: Address
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          $ref: ./PostalCode.yaml
+        country:
+          type: string
+      required:
+        - street
+        - city
+        - state
+        - postalCode
+        - country
+    Error:
+      type: object
+      title: Error
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+        - code
+        - message
+    Metadata:
+      type: object
+      title: Metadata
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        apiVersion:
+          type: string
+      required:
+        - timestamp
+        - apiVersion
     Order:
       type: object
       properties:
@@ -96,7 +193,6 @@ components:
           items:
             type: string
         status:
-          type: string
           enum:
             - placed
             - processed
