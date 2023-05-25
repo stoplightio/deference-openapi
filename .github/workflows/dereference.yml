@@ -1,0 +1,33 @@
+name: Dereference OpenAPI files
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  dereference:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+      
+    - name: Install swagger-cli
+      run: npm install -g @apidevtools/swagger-cli
+
+    - name: Dereference OpenAPI files
+      run: |
+        for file in $(find . -name '*.yaml'); do
+          swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+        done
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Dereference OpenAPI files" -a || exit 0
+        git push
