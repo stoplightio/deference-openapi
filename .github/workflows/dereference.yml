@@ -21,13 +21,25 @@ jobs:
 
     - name: Dereference OpenAPI files
       run: |
+        sudo apt update
+        sudo apt install -y jq
+        wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
+        tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
         for file in $(find . -name '*.yaml'); do
-          swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+          if yq e '.openapi != null' $file; then
+            swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+          fi
+        done
+        for file in $(find . -name '*.json'); do
+          if jq '.openapi != null' $file; then
+            swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+          fi
         done
 
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add -A
         git commit -m "Dereference OpenAPI files" -a || exit 0
         git push
