@@ -27,7 +27,7 @@ jobs:
         sudo apt install -y jq
         wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
         tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
-        for file in $(find . \( -name '*.yaml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
+        for file in $(find . \( -name '*.yaml' -o -name '*.yml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
           if [[ $file == *.json ]]; then
             command="jq '.openapi != null'"
           else
