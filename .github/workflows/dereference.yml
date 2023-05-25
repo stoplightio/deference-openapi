@@ -31,7 +31,7 @@ jobs:
           if yq e '.openapi != null' $file; then
             dir=$(dirname $file)
             mkdir -p "bundled_specifications/$dir"
-            if swagger-cli bundle $file -o "bundled_specifications/$file"; then
+            if swagger-cli bundle $file -o -r "bundled_specifications/$file"; then
               echo "::group::Successfully dereferenced"
               echo $file
               echo "::endgroup::"
@@ -46,7 +46,7 @@ jobs:
           if jq '.openapi != null' $file; then
             dir=$(dirname $file)
             mkdir -p "bundled_specifications/$dir"
-            if swagger-cli bundle $file -o "bundled_specifications/$file"; then
+            if swagger-cli bundle $file -o -r "bundled_specifications/$file"; then
               echo "::group::Successfully dereferenced"
               echo $file
               echo "::endgroup::"
