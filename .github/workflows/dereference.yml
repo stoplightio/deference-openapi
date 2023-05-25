@@ -27,7 +27,7 @@ jobs:
         sudo apt install -y jq
         wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
         tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
-        for file in $(find . \( -name '*.yaml' -r -o -name '*.yml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
+        for file in $(find . \( -name '*.yaml' -o -name '*.yml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
           if [[ $file == *.json ]]; then
             is_openapi=$(jq -r '.openapi != null' $file)
           else
@@ -36,7 +36,7 @@ jobs:
           if [[ $is_openapi == "true" ]]; then
             dir=$(dirname $file)
             mkdir -p "bundled_specifications/$dir"
-            if swagger-cli bundle $file -o "bundled_specifications/$file"; then
+            if swagger-cli bundle $file -r -o "bundled_specifications/$file"; then
               echo "::group::Successfully dereferenced"
               echo $file
               echo "::endgroup::"
