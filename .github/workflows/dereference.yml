@@ -27,8 +27,13 @@ jobs:
         sudo apt install -y jq
         wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
         tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
-        for file in $(find . -name '*.yaml' ! -path './bundled_specifications/*'); do
-          if yq e '.openapi != null' $file; then
+        for file in $(find . \( -name '*.yaml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
+          if [[ $file == *.json ]]; then
+            command="jq '.openapi != null'"
+          else
+            command="yq e '.openapi != null'"
+          fi
+          if eval $command $file; then
             dir=$(dirname $file)
             mkdir -p "bundled_specifications/$dir"
             if swagger-cli bundle $file -r -o "bundled_specifications/$file"; then
@@ -42,21 +47,7 @@ jobs:
             fi
           fi
         done
-        for file in $(find . -name '*.json' ! -path './bundled_specifications/*'); do
-          if jq '.openapi != null' $file; then
-            dir=$(dirname $file)
-            mkdir -p "bundled_specifications/$dir"
-            if swagger-cli bundle $file -r -o "bundled_specifications/$file"; then
-              echo "::group::Successfully dereferenced"
-              echo $file
-              echo "::endgroup::"
-            else
-              echo "::group::Failed to dereference"
-              echo $file
-              echo "::endgroup::"
-            fi
-          fi
-        done
+
 
     - name: Commit changes
       run: |
