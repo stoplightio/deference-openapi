@@ -22,7 +22,102 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Product"
+                    "type": "object",
+                    "title": "Product",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "currency": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "type": "object",
+                        "title": "User",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "shippingAddress": {
+                            "type": "object",
+                            "title": "Address",
+                            "properties": {
+                              "street": {
+                                "type": "string"
+                              },
+                              "city": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "street",
+                              "city",
+                              "state",
+                              "postalCode",
+                              "country"
+                            ]
+                          },
+                          "billingAddress": {
+                            "type": "object",
+                            "title": "Address",
+                            "properties": {
+                              "street": {
+                                "type": "string"
+                              },
+                              "city": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "street",
+                              "city",
+                              "state",
+                              "postalCode",
+                              "country"
+                            ]
+                          },
+                          "role": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "email",
+                          "role"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "price",
+                      "currency"
+                    ]
                   }
                 }
               }
@@ -33,7 +128,40 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object",
+                  "title": "Error",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "title": "Metadata",
+                      "properties": {
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "apiVersion": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "timestamp",
+                        "apiVersion"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ]
                 }
               }
             }
@@ -52,7 +180,102 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "type": "object",
+                "title": "Product",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "type": "object",
+                    "title": "User",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "shippingAddress": {
+                        "type": "object",
+                        "title": "Address",
+                        "properties": {
+                          "street": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "state": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "street",
+                          "city",
+                          "state",
+                          "postalCode",
+                          "country"
+                        ]
+                      },
+                      "billingAddress": {
+                        "type": "object",
+                        "title": "Address",
+                        "properties": {
+                          "street": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "state": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "street",
+                          "city",
+                          "state",
+                          "postalCode",
+                          "country"
+                        ]
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email",
+                      "role"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "price",
+                  "currency"
+                ]
               }
             }
           }
@@ -63,7 +286,102 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product"
+                  "type": "object",
+                  "title": "Product",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "title": "User",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "shippingAddress": {
+                          "type": "object",
+                          "title": "Address",
+                          "properties": {
+                            "street": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "street",
+                            "city",
+                            "state",
+                            "postalCode",
+                            "country"
+                          ]
+                        },
+                        "billingAddress": {
+                          "type": "object",
+                          "title": "Address",
+                          "properties": {
+                            "street": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "street",
+                            "city",
+                            "state",
+                            "postalCode",
+                            "country"
+                          ]
+                        },
+                        "role": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "email",
+                        "role"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "price",
+                    "currency"
+                  ]
                 }
               }
             }
@@ -95,7 +413,102 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product"
+                  "type": "object",
+                  "title": "Product",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "title": "User",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "shippingAddress": {
+                          "type": "object",
+                          "title": "Address",
+                          "properties": {
+                            "street": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "street",
+                            "city",
+                            "state",
+                            "postalCode",
+                            "country"
+                          ]
+                        },
+                        "billingAddress": {
+                          "type": "object",
+                          "title": "Address",
+                          "properties": {
+                            "street": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "street",
+                            "city",
+                            "state",
+                            "postalCode",
+                            "country"
+                          ]
+                        },
+                        "role": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "email",
+                        "role"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "price",
+                    "currency"
+                  ]
                 }
               }
             }
@@ -119,7 +532,34 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Order"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "productIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "status": {
+                        "enum": [
+                          "placed",
+                          "processed",
+                          "shipped",
+                          "delivered",
+                          "cancelled"
+                        ]
+                      },
+                      "totalPrice": {
+                        "type": "number",
+                        "format": "float"
+                      }
+                    }
                   }
                 }
               }
@@ -139,7 +579,34 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  },
+                  "productIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "status": {
+                    "enum": [
+                      "placed",
+                      "processed",
+                      "shipped",
+                      "delivered",
+                      "cancelled"
+                    ]
+                  },
+                  "totalPrice": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
               }
             }
           }
@@ -150,7 +617,34 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "productIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "enum": [
+                        "placed",
+                        "processed",
+                        "shipped",
+                        "delivered",
+                        "cancelled"
+                      ]
+                    },
+                    "totalPrice": {
+                      "type": "number",
+                      "format": "float"
+                    }
+                  }
                 }
               }
             }
@@ -186,7 +680,75 @@
             "type": "string"
           },
           "user": {
-            "$ref": "#/components/schemas/User"
+            "type": "object",
+            "title": "User",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "shippingAddress": {
+                "type": "object",
+                "title": "Address",
+                "properties": {
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "street",
+                  "city",
+                  "state",
+                  "postalCode",
+                  "country"
+                ]
+              },
+              "billingAddress": {
+                "type": "object",
+                "title": "Address",
+                "properties": {
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "street",
+                  "city",
+                  "state",
+                  "postalCode",
+                  "country"
+                ]
+              },
+              "role": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "email",
+              "role"
+            ]
           }
         },
         "required": [
@@ -208,10 +770,54 @@
             "format": "email"
           },
           "shippingAddress": {
-            "$ref": "#/components/schemas/Address"
+            "type": "object",
+            "title": "Address",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "state",
+              "postalCode",
+              "country"
+            ]
           },
           "billingAddress": {
-            "$ref": "#/components/schemas/Address"
+            "type": "object",
+            "title": "Address",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "street",
+              "city",
+              "state",
+              "postalCode",
+              "country"
+            ]
           },
           "role": {
             "type": "string"
@@ -262,7 +868,21 @@
             "type": "string"
           },
           "metadata": {
-            "$ref": "#/components/schemas/Metadata"
+            "type": "object",
+            "title": "Metadata",
+            "properties": {
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "apiVersion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "timestamp",
+              "apiVersion"
+            ]
           }
         },
         "required": [
