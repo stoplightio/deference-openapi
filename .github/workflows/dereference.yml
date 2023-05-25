@@ -29,12 +29,12 @@ jobs:
         tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
         for file in $(find . -name '*.yaml'); do
           if yq e '.openapi != null' $file; then
-            swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+            swagger-cli bundle $file -r -o "bundled_specifications/$(basename $file)"
           fi
         done
         for file in $(find . -name '*.json'); do
           if jq '.openapi != null' $file; then
-            swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+            swagger-cli bundle $file -r -o "bundled_specifications/$(basename $file)"
           fi
         done
 
