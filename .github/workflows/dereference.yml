@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
       
     - name: Setup Node.js
       uses: actions/setup-node@v2
@@ -21,13 +23,45 @@ jobs:
 
     - name: Dereference OpenAPI files
       run: |
-        for file in $(find . -name '*.yaml'); do
-          swagger-cli bundle $file -o "bundled_specifications/$(basename $file)"
+        sudo apt update
+        sudo apt install -y jq
+        wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
+        tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
+        for file in $(find . -name '*.yaml' ! -path './bundled_specifications/*'); do
+          if yq e '.openapi != null' $file; then
+            dir=$(dirname $file)
+            mkdir -p "bundled_specifications/$dir"
+            if swagger-cli bundle $file -o "bundled_specifications/$file"; then
+              echo "::group::Successfully dereferenced"
+              echo $file
+              echo "::endgroup::"
+            else
+              echo "::group::Failed to dereference"
+              echo $file
+              echo "::endgroup::"
+            fi
+          fi
+        done
+        for file in $(find . -name '*.json' ! -path './bundled_specifications/*'); do
+          if jq '.openapi != null' $file; then
+            dir=$(dirname $file)
+            mkdir -p "bundled_specifications/$dir"
+            if swagger-cli bundle $file -o "bundled_specifications/$file"; then
+              echo "::group::Successfully dereferenced"
+              echo $file
+              echo "::endgroup::"
+            else
+              echo "::group::Failed to dereference"
+              echo $file
+              echo "::endgroup::"
+            fi
+          fi
         done
 
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add -A
         git commit -m "Dereference OpenAPI files" -a || exit 0
-        git push
+        git push origin ${{ github.head_ref }}
