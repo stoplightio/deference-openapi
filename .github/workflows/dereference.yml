@@ -40,10 +40,12 @@ jobs:
               echo "::group::Successfully dereferenced"
               echo $file
               echo "::endgroup::"
+              echo "::notice file=$file::Successfully dereferenced"
             else
               echo "::group::Failed to dereference"
               echo $file
               echo "::endgroup::"
+              echo "::warning file=$file::Failed to dereference"
             fi
           fi
         done
