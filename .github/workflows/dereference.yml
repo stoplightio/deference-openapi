@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
       
     - name: Setup Node.js
       uses: actions/setup-node@v2
@@ -42,4 +44,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         git commit -m "Dereference OpenAPI files" -a || exit 0
-        git push
+        git push origin ${{ github.head_ref }}
