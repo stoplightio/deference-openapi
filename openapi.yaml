@@ -144,8 +144,6 @@ components:
           type: string
         state:
           type: string
-        postalCode:
-          $ref: ./PostalCode.yaml
         country:
           type: string
       required:
