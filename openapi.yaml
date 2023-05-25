@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: eCommerce API
+  description: This is a simple eCommerce API.
+  version: 1.0.0
+servers:
+  - url: 'http://api.example.com/v1'
+paths:
+  /products:
+    get:
+      summary: List all products
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/x8O50c9KQnA'
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+      responses:
+        '201':
+          description: Created product
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+  '/products/{productId}':
+    get:
+      summary: Get a product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A product
+          content:
+            application/json:
+              schema:
+                $ref: 'stoplight://resources/overrides/cvFLJQujulA'
+  /orders:
+    get:
+      summary: List all orders
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Created order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        productIds:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - placed
+            - processed
+            - shipped
+            - delivered
+            - cancelled
+        totalPrice:
+          type: number
+          format: float
