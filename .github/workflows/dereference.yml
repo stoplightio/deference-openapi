@@ -27,33 +27,25 @@ jobs:
         sudo apt install -y jq
         wget https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64.tar.gz -O - |\
         tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
-        for file in $(find . -name '*.yaml' ! -path './bundled_specifications/*'); do
-          if yq e '.openapi != null' $file; then
-            dir=$(dirname $file)
-            mkdir -p "bundled_specifications/$dir"
-            if swagger-cli bundle $file -r -o "bundled_specifications/$file"; then
-              echo "::group::Successfully dereferenced"
-              echo $file
-              echo "::endgroup::"
-            else
-              echo "::group::Failed to dereference"
-              echo $file
-              echo "::endgroup::"
-            fi
+        for file in $(find . \( -name '*.yaml' -o -name '*.yml' -o -name '*.json' \) ! -path './bundled_specifications/*'); do
+          if [[ $file == *.json ]]; then
+            is_openapi=$(jq -r '.openapi != null' $file)
+          else
+            is_openapi=$(yq e '.openapi != null' $file)
           fi
-        done
-        for file in $(find . -name '*.json' ! -path './bundled_specifications/*'); do
-          if jq '.openapi != null' $file; then
+          if [[ $is_openapi == "true" ]]; then
             dir=$(dirname $file)
             mkdir -p "bundled_specifications/$dir"
             if swagger-cli bundle $file -r -o "bundled_specifications/$file"; then
               echo "::group::Successfully dereferenced"
               echo $file
               echo "::endgroup::"
+              echo "::notice file=$file::Successfully dereferenced"
             else
               echo "::group::Failed to dereference"
               echo $file
               echo "::endgroup::"
+              echo "::warning file=$file::Failed to dereference"
             fi
           fi
         done
