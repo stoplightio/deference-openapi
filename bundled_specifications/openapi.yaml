@@ -22,102 +22,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "title": "Product",
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "price": {
-                        "type": "number"
-                      },
-                      "currency": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "user": {
-                        "type": "object",
-                        "title": "User",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "email": {
-                            "type": "string",
-                            "format": "email"
-                          },
-                          "shippingAddress": {
-                            "type": "object",
-                            "title": "Address",
-                            "properties": {
-                              "street": {
-                                "type": "string"
-                              },
-                              "city": {
-                                "type": "string"
-                              },
-                              "state": {
-                                "type": "string"
-                              },
-                              "country": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "street",
-                              "city",
-                              "state",
-                              "postalCode",
-                              "country"
-                            ]
-                          },
-                          "billingAddress": {
-                            "type": "object",
-                            "title": "Address",
-                            "properties": {
-                              "street": {
-                                "type": "string"
-                              },
-                              "city": {
-                                "type": "string"
-                              },
-                              "state": {
-                                "type": "string"
-                              },
-                              "country": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "street",
-                              "city",
-                              "state",
-                              "postalCode",
-                              "country"
-                            ]
-                          },
-                          "role": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "name",
-                          "email",
-                          "role"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "price",
-                      "currency"
-                    ]
+                    "$ref": "#/components/schemas/Product"
                   }
                 }
               }
@@ -128,40 +33,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "Error",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "details": {
-                      "type": "string"
-                    },
-                    "metadata": {
-                      "type": "object",
-                      "title": "Metadata",
-                      "properties": {
-                        "timestamp": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "apiVersion": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "timestamp",
-                        "apiVersion"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "message"
-                  ]
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -180,102 +52,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "title": "Product",
-                "properties": {
-                  "id": {
-                    "type": "integer"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "price": {
-                    "type": "number"
-                  },
-                  "currency": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "user": {
-                    "type": "object",
-                    "title": "User",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string",
-                        "format": "email"
-                      },
-                      "shippingAddress": {
-                        "type": "object",
-                        "title": "Address",
-                        "properties": {
-                          "street": {
-                            "type": "string"
-                          },
-                          "city": {
-                            "type": "string"
-                          },
-                          "state": {
-                            "type": "string"
-                          },
-                          "country": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "street",
-                          "city",
-                          "state",
-                          "postalCode",
-                          "country"
-                        ]
-                      },
-                      "billingAddress": {
-                        "type": "object",
-                        "title": "Address",
-                        "properties": {
-                          "street": {
-                            "type": "string"
-                          },
-                          "city": {
-                            "type": "string"
-                          },
-                          "state": {
-                            "type": "string"
-                          },
-                          "country": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "street",
-                          "city",
-                          "state",
-                          "postalCode",
-                          "country"
-                        ]
-                      },
-                      "role": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "email",
-                      "role"
-                    ]
-                  }
-                },
-                "required": [
-                  "id",
-                  "name",
-                  "price",
-                  "currency"
-                ]
+                "$ref": "#/components/schemas/Product"
               }
             }
           }
@@ -286,102 +63,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "Product",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "currency": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "user": {
-                      "type": "object",
-                      "title": "User",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string",
-                          "format": "email"
-                        },
-                        "shippingAddress": {
-                          "type": "object",
-                          "title": "Address",
-                          "properties": {
-                            "street": {
-                              "type": "string"
-                            },
-                            "city": {
-                              "type": "string"
-                            },
-                            "state": {
-                              "type": "string"
-                            },
-                            "country": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "street",
-                            "city",
-                            "state",
-                            "postalCode",
-                            "country"
-                          ]
-                        },
-                        "billingAddress": {
-                          "type": "object",
-                          "title": "Address",
-                          "properties": {
-                            "street": {
-                              "type": "string"
-                            },
-                            "city": {
-                              "type": "string"
-                            },
-                            "state": {
-                              "type": "string"
-                            },
-                            "country": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "street",
-                            "city",
-                            "state",
-                            "postalCode",
-                            "country"
-                          ]
-                        },
-                        "role": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "email",
-                        "role"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "name",
-                    "price",
-                    "currency"
-                  ]
+                  "$ref": "#/components/schemas/Product"
                 }
               }
             }
@@ -413,102 +95,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "title": "Product",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "price": {
-                      "type": "number"
-                    },
-                    "currency": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "user": {
-                      "type": "object",
-                      "title": "User",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string",
-                          "format": "email"
-                        },
-                        "shippingAddress": {
-                          "type": "object",
-                          "title": "Address",
-                          "properties": {
-                            "street": {
-                              "type": "string"
-                            },
-                            "city": {
-                              "type": "string"
-                            },
-                            "state": {
-                              "type": "string"
-                            },
-                            "country": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "street",
-                            "city",
-                            "state",
-                            "postalCode",
-                            "country"
-                          ]
-                        },
-                        "billingAddress": {
-                          "type": "object",
-                          "title": "Address",
-                          "properties": {
-                            "street": {
-                              "type": "string"
-                            },
-                            "city": {
-                              "type": "string"
-                            },
-                            "state": {
-                              "type": "string"
-                            },
-                            "country": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "street",
-                            "city",
-                            "state",
-                            "postalCode",
-                            "country"
-                          ]
-                        },
-                        "role": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "email",
-                        "role"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "name",
-                    "price",
-                    "currency"
-                  ]
+                  "$ref": "#/components/schemas/Product"
                 }
               }
             }
@@ -532,34 +119,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "userId": {
-                        "type": "string"
-                      },
-                      "productIds": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "status": {
-                        "enum": [
-                          "placed",
-                          "processed",
-                          "shipped",
-                          "delivered",
-                          "cancelled"
-                        ]
-                      },
-                      "totalPrice": {
-                        "type": "number",
-                        "format": "float"
-                      }
-                    }
+                    "$ref": "#/components/schemas/Order"
                   }
                 }
               }
@@ -579,34 +139,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "string"
-                  },
-                  "productIds": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "status": {
-                    "enum": [
-                      "placed",
-                      "processed",
-                      "shipped",
-                      "delivered",
-                      "cancelled"
-                    ]
-                  },
-                  "totalPrice": {
-                    "type": "number",
-                    "format": "float"
-                  }
-                }
+                "$ref": "#/components/schemas/Order"
               }
             }
           }
@@ -617,34 +150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "userId": {
-                      "type": "string"
-                    },
-                    "productIds": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "status": {
-                      "enum": [
-                        "placed",
-                        "processed",
-                        "shipped",
-                        "delivered",
-                        "cancelled"
-                      ]
-                    },
-                    "totalPrice": {
-                      "type": "number",
-                      "format": "float"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -680,75 +186,7 @@
             "type": "string"
           },
           "user": {
-            "type": "object",
-            "title": "User",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string",
-                "format": "email"
-              },
-              "shippingAddress": {
-                "type": "object",
-                "title": "Address",
-                "properties": {
-                  "street": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "country": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "street",
-                  "city",
-                  "state",
-                  "postalCode",
-                  "country"
-                ]
-              },
-              "billingAddress": {
-                "type": "object",
-                "title": "Address",
-                "properties": {
-                  "street": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "type": "string"
-                  },
-                  "country": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "street",
-                  "city",
-                  "state",
-                  "postalCode",
-                  "country"
-                ]
-              },
-              "role": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "name",
-              "email",
-              "role"
-            ]
+            "$ref": "#/components/schemas/User"
           }
         },
         "required": [
@@ -770,54 +208,10 @@
             "format": "email"
           },
           "shippingAddress": {
-            "type": "object",
-            "title": "Address",
-            "properties": {
-              "street": {
-                "type": "string"
-              },
-              "city": {
-                "type": "string"
-              },
-              "state": {
-                "type": "string"
-              },
-              "country": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "street",
-              "city",
-              "state",
-              "postalCode",
-              "country"
-            ]
+            "$ref": "#/components/schemas/Address"
           },
           "billingAddress": {
-            "type": "object",
-            "title": "Address",
-            "properties": {
-              "street": {
-                "type": "string"
-              },
-              "city": {
-                "type": "string"
-              },
-              "state": {
-                "type": "string"
-              },
-              "country": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "street",
-              "city",
-              "state",
-              "postalCode",
-              "country"
-            ]
+            "$ref": "#/components/schemas/Address"
           },
           "role": {
             "type": "string"
@@ -868,21 +262,7 @@
             "type": "string"
           },
           "metadata": {
-            "type": "object",
-            "title": "Metadata",
-            "properties": {
-              "timestamp": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "apiVersion": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "timestamp",
-              "apiVersion"
-            ]
+            "$ref": "#/components/schemas/Metadata"
           }
         },
         "required": [
